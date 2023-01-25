@@ -1,24 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import plateNumberSearcher from "./helpers/plateNumberSearcher";
+import validator from "./helpers/validator";
+
+import useFetchXLSXData from "./hooks/useFetchXLSXData";
 
 function App() {
+  const { data, loading, error } = useFetchXLSXData(
+    "http://localhost:3000/resources/name_java.xlsx"
+  );
+  const [inputValue, setInputValue] = useState<string>("");
+  const [status, setStatus] = useState<string>("")
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
+    setInputValue((prevValue) => {
+      const inputValue = event.target.value;
+      if (validator(inputValue)) {
+        return inputValue;
+      } else {
+        return prevValue;
+      }
+    });
+  };
+
+  const handleClick = () => {
+    if (data !== null) {
+      plateNumberSearcher(inputValue, data)
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input type="text" onChange={handleChange} value={inputValue} />
+      <button disabled={(loading || error.length > 0)} onClick={handleClick}>{"Найти"}</button>
+      <p>{status}</p>
+      {loading && <p>{loading}</p>}
+      {error && <p>{error}</p>}
     </div>
   );
 }
