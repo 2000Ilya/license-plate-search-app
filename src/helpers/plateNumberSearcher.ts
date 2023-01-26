@@ -1,10 +1,8 @@
-import { LicensePlate } from "../types";
-
 function plateNumberSearcher(
   plateValue: string,
-  platesValues: LicensePlate[]
+  platesValues: string[]
 ): string {
-  if (plateValue) {
+  if (platesValues.includes(plateValue)) {
     return "найден";
   } else {
     return "не найден";

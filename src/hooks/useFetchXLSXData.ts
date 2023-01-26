@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { read, utils } from "xlsx";
 import { LicensePlate } from "../types";
 
 function useFetchXLSXData(url: string) {
-  const [data, setData] = useState<LicensePlate[] | null>(null);
+  const [data, setData] = useState<string[] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
@@ -19,7 +18,11 @@ function useFetchXLSXData(url: string) {
       })
       .then((res) => {
         const wb = read(res);
-        setData(utils.sheet_to_json<LicensePlate>(wb.Sheets[wb.SheetNames[0]]));
+        setData(
+          utils
+            .sheet_to_json<LicensePlate>(wb.Sheets[wb.SheetNames[0]])
+            .map((row) => row.Name)
+        );
       })
       .catch((err) => {
         setLoading(false);
