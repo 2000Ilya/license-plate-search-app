@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/license-plate-search-app/static/css/main.1d766016.css",
-    "main.js": "/license-plate-search-app/static/js/main.9bd09be4.js",
+    "main.js": "/license-plate-search-app/static/js/main.2dc64e72.js",
     "index.html": "/license-plate-search-app/index.html",
     "main.1d766016.css.map": "/license-plate-search-app/static/css/main.1d766016.css.map",
-    "main.9bd09be4.js.map": "/license-plate-search-app/static/js/main.9bd09be4.js.map"
+    "main.2dc64e72.js.map": "/license-plate-search-app/static/js/main.2dc64e72.js.map"
   },
   "entrypoints": [
     "static/css/main.1d766016.css",
-    "static/js/main.9bd09be4.js"
+    "static/js/main.2dc64e72.js"
   ]
 }
