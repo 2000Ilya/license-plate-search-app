@@ -7,7 +7,7 @@ import useFetchXLSXData from "./hooks/useFetchXLSXData";
 
 function App() {
   const { data, loading, error } = useFetchXLSXData(
-    "http://localhost:3000/license-plate-search-app/resources/name_java.xlsx"
+    `/license-plate-search-app/resources/name_java.xlsx`
   );
   const [inputValue, setInputValue] = useState<string>("");
   const [status, setStatus] = useState<string>("")

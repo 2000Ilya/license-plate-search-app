@@ -26,7 +26,7 @@ function useFetchXLSXData(url: string) {
       })
       .catch((err) => {
         setLoading(false);
-        setError("An error occurred. Awkward..");
+        setError("Произошла ошибка при загрузке файла..");
       });
   }, [url]);
 
